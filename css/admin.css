@@ -1,0 +1,270 @@
+/* Admin CRM Styles */
+
+.admin-container {
+    min-height: calc(100vh - 90px);
+    padding: 40px 0;
+}
+
+.admin-container h1 {
+    font-size: 36px;
+    margin-bottom: 32px;
+}
+
+/* Tabs */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-link.active {
+    color: var(--accent-gold);
+}
+
+/* Admin Stats */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.admin-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+}
+
+.admin-stat-card .stat-icon {
+    font-size: 48px;
+}
+
+.admin-stat-card .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent-gold);
+    margin-bottom: 4px;
+}
+
+.admin-stat-card .stat-label {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Admin Section */
+.admin-section {
+    margin-bottom: 48px;
+}
+
+.admin-section h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.action-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.action-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-gold);
+    transform: translateY(-4px);
+}
+
+.action-icon {
+    font-size: 40px;
+}
+
+/* Toolbar */
+.admin-toolbar {
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+/* Tables */
+.data-table {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.data-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead {
+    background: var(--bg-hover);
+}
+
+.data-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table td {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.data-table tr:hover {
+    background: var(--bg-hover);
+}
+
+.table-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.table-badge.available {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+}
+
+.table-badge.sold {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+}
+
+.table-badge.pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning);
+}
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.table-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.table-btn.primary {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+}
+
+.table-btn.primary:hover {
+    background: var(--accent-gold-dark);
+}
+
+.table-btn.secondary {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.table-btn.secondary:hover {
+    border-color: var(--accent-gold);
+}
+
+/* Form Select */
+.form-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+}
+
+.form-select option {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* Empty State */
+.table-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.table-empty-icon {
+    font-size: 60px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-stats,
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .data-table {
+        overflow-x: auto;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+    }
+}

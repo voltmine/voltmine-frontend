@@ -1,0 +1,22 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with Gradient -->
+  <circle cx="32" cy="32" r="30" fill="url(#bgGradient)"/>
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a2138"/>
+      <stop offset="100%" stop-color="#0a0e1a"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f4d03f"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Lightning Bolt -->
+  <path d="M35 12 L25 32 L32 32 L28 52 L42 28 L35 28 Z" fill="url(#goldGradient)" stroke="#f4d03f" stroke-width="1"/>
+
+  <!-- Electric Sparks -->
+  <circle cx="38" cy="16" r="1.5" fill="#f4d03f" opacity="0.8"/>
+  <circle cx="26" cy="48" r="1.5" fill="#f4d03f" opacity="0.8"/>
+  <circle cx="44" cy="30" r="1" fill="#f4d03f" opacity="0.6"/>
+</svg>

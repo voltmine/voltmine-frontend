@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PRX Holdings</title>
+    <link rel="stylesheet" href="css/dark-style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="logo.png" alt="PRX Holdings" class="logo">
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div>
+                    <h1>My Mining Dashboard</h1>
+                    <p class="dashboard-subtitle" id="userEmail">Loading...</p>
+                </div>
+                <div class="header-actions">
+                    <a href="https://t.me/dsmrcrypto" target="_blank" class="btn-outline btn-small">
+                        ✈️ Support
+                    </a>
+                </div>
+            </div>
+
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <div class="balance-header">
+                    <div>
+                        <p class="balance-label">Total Balance</p>
+                        <h2 class="balance-amount" id="totalBalance">0.00000000 BTC</h2>
+                        <p class="balance-usd" id="balanceUSD">$0.00 USD</p>
+                    </div>
+                    <button class="btn-primary" onclick="showWithdrawModal()">Withdraw</button>
+                </div>
+
+                <div class="balance-stats">
+                    <div class="balance-stat">
+                        <span class="stat-icon">⛏️</span>
+                        <div>
+                            <p class="stat-value" id="totalMiners">0</p>
+                            <p class="stat-label">Active Miners</p>
+                        </div>
+                    </div>
+                    <div class="balance-stat">
+                        <span class="stat-icon">⚡</span>
+                        <div>
+                            <p class="stat-value" id="totalHashrate">0 TH/s</p>
+                            <p class="stat-label">Total Hashrate</p>
+                        </div>
+                    </div>
+                    <div class="balance-stat">
+                        <span class="stat-icon">💰</span>
+                        <div>
+                            <p class="stat-value" id="totalEarnings">0 BTC</p>
+                            <p class="stat-label">Lifetime Earnings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Miners Section -->
+            <div class="section-title">
+                <h2>My Miners</h2>
+            </div>
+
+            <div id="minersGrid" class="miners-grid">
+                <!-- Miners will be loaded here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">📦</div>
+                <h3>No Miners Yet</h3>
+                <p>You haven't purchased any mining hardware yet.</p>
+                <a href="index.html#marketplace" class="btn-primary">Browse Marketplace</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Withdraw Bitcoin</h3>
+                <button class="modal-close" onclick="closeWithdrawModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Amount (BTC)</label>
+                    <input type="number" id="withdrawAmount" step="0.00000001" min="0.001" placeholder="0.001">
+                    <p class="input-hint">Minimum: 0.001 BTC</p>
+                </div>
+                <div class="form-group">
+                    <label>Bitcoin Address</label>
+                    <input type="text" id="withdrawAddress" placeholder="bc1q...">
+                </div>
+                <div class="modal-info">
+                    <p>⚠️ Please double-check your Bitcoin address. Transactions cannot be reversed.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" onclick="closeWithdrawModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitWithdraw()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        const BTC_PRICE = 67500;
+
+        async function loadDashboard() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/customer/dashboard`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load dashboard');
+                }
+
+                const data = await response.json();
+                displayDashboard(data);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to load dashboard. Please login again.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        function displayDashboard(data) {
+            // User info
+            document.getElementById('userEmail').textContent = data.customer.email;
+
+            // Balance
+            const balance = data.customer.balance_btc || 0;
+            document.getElementById('totalBalance').textContent = balance.toFixed(8) + ' BTC';
+            document.getElementById('balanceUSD').textContent = '$' + (balance * BTC_PRICE).toFixed(2) + ' USD';
+
+            // Stats
+            document.getElementById('totalMiners').textContent = data.miners.length;
+
+            const totalHashrate = data.miners.reduce((sum, m) => sum + m.hashrate, 0);
+            document.getElementById('totalHashrate').textContent = totalHashrate.toFixed(2) + ' TH/s';
+
+            const totalEarnings = data.miners.reduce((sum, m) => sum + (m.total_earned_btc || 0), 0);
+            document.getElementById('totalEarnings').textContent = totalEarnings.toFixed(8) + ' BTC';
+
+            // Miners
+            const minersGrid = document.getElementById('minersGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            if (data.miners.length === 0) {
+                minersGrid.style.display = 'none';
+                emptyState.style.display = 'flex';
+            } else {
+                minersGrid.style.display = 'grid';
+                emptyState.style.display = 'none';
+
+                minersGrid.innerHTML = data.miners.map(miner => `
+                    <div class="miner-card">
+                        <div class="miner-header">
+                            <div>
+                                <h3>${miner.model}</h3>
+                                <p class="miner-serial">${miner.serial_number}</p>
+                            </div>
+                            <span class="status-badge ${miner.status}">
+                                ${miner.status === 'active' ? '● Online' : '○ Offline'}
+                            </span>
+                        </div>
+
+                        <div class="miner-stats-grid">
+                            <div class="miner-stat">
+                                <p class="miner-stat-label">Hashrate</p>
+                                <p class="miner-stat-value">${miner.hashrate} TH/s</p>
+                            </div>
+                            <div class="miner-stat">
+                                <p class="miner-stat-label">Purchase Price</p>
+                                <p class="miner-stat-value">$${miner.purchase_price}</p>
+                            </div>
+                        </div>
+
+                        <div class="miner-earnings">
+                            <div class="earnings-row">
+                                <span>Total Mined</span>
+                                <span class="earnings-value">${(miner.total_earned_btc || 0).toFixed(8)} BTC</span>
+                            </div>
+                            <div class="earnings-row">
+                                <span>Electricity Cost</span>
+                                <span class="earnings-cost">-$${(miner.total_electricity_usd || 0).toFixed(2)}</span>
+                            </div>
+                            <div class="earnings-row total">
+                                <span>Net Profit</span>
+                                <span class="earnings-profit">
+                                    ${((miner.total_earned_btc || 0) * BTC_PRICE - (miner.total_electricity_usd || 0)).toFixed(2)} USD
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="miner-footer">
+                            <small>Active since ${new Date(miner.purchase_date).toLocaleDateString()}</small>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function showWithdrawModal() {
+            document.getElementById('withdrawModal').style.display = 'flex';
+        }
+
+        function closeWithdrawModal() {
+            document.getElementById('withdrawModal').style.display = 'none';
+        }
+
+        async function submitWithdraw() {
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            const address = document.getElementById('withdrawAddress').value;
+
+            if (!amount || amount < 0.001) {
+                alert('Minimum withdrawal is 0.001 BTC');
+                return;
+            }
+
+            if (!address) {
+                alert('Please enter a Bitcoin address');
+                return;
+            }
+
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch(`${API_URL}/customer/withdraw`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount_btc: amount, btc_address: address })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Withdrawal request submitted! We will process it within 24 hours.');
+                    closeWithdrawModal();
+                    loadDashboard();
+                } else {
+                    alert(data.error || 'Withdrawal failed');
+                }
+            } catch (error) {
+                alert('Connection error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+
+        // Load dashboard on page load
+        loadDashboard();
+
+        // Reload every 30 seconds
+        setInterval(loadDashboard, 30000);
+    </script>
+</body>
+</html>

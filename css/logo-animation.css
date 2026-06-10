@@ -1,0 +1,60 @@
+/* ============================================
+   CENTERED LOGO ANIMATION
+   Logo starts centered, then moves to navbar on scroll
+   ============================================ */
+
+/* Centered Logo Container (visible on page load) */
+.logo-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a2138 100%);
+    z-index: 10000;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    pointer-events: all;
+}
+
+.logo-intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.logo-intro img {
+    width: 300px;
+    height: auto;
+    animation: logoIntroAnimation 1.5s ease-out forwards;
+}
+
+@keyframes logoIntroAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Override navbar to hide initially */
+.navbar-modern {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Navbar visible after intro */
+.navbar-modern.show {
+    opacity: 1;
+    transform: translateY(0);
+}

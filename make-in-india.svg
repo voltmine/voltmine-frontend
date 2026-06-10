@@ -1,0 +1,56 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Official Make in India Logo - Stylized Lion/Gear Design -->
+  <defs>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9933;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6600;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer gear circle -->
+  <circle cx="60" cy="60" r="50" fill="none" stroke="url(#orangeGrad)" stroke-width="2"/>
+
+  <!-- Inner mechanical lion/gear design -->
+  <g transform="translate(60, 60)">
+    <!-- Central gear hub -->
+    <circle cx="0" cy="0" r="15" fill="#FF9933"/>
+    <circle cx="0" cy="0" r="10" fill="white"/>
+    <circle cx="0" cy="0" r="5" fill="#FF9933"/>
+
+    <!-- 8 Main gear teeth (representing industrial/manufacturing) -->
+    <g id="gearTooth">
+      <!-- Top -->
+      <rect x="-3" y="-35" width="6" height="10" fill="#FF9933" rx="1"/>
+      <!-- Top-right -->
+      <rect x="20" y="-28" width="10" height="6" fill="#FF9933" rx="1" transform="rotate(45 25 -25)"/>
+      <!-- Right -->
+      <rect x="25" y="-3" width="10" height="6" fill="#FF9933" rx="1"/>
+      <!-- Bottom-right -->
+      <rect x="20" y="22" width="10" height="6" fill="#FF9933" rx="1" transform="rotate(-45 25 25)"/>
+      <!-- Bottom -->
+      <rect x="-3" y="25" width="6" height="10" fill="#FF9933" rx="1"/>
+      <!-- Bottom-left -->
+      <rect x="-30" y="22" width="10" height="6" fill="#FF9933" rx="1" transform="rotate(45 -25 25)"/>
+      <!-- Left -->
+      <rect x="-35" y="-3" width="10" height="6" fill="#FF9933" rx="1"/>
+      <!-- Top-left -->
+      <rect x="-30" y="-28" width="10" height="6" fill="#FF9933" rx="1" transform="rotate(-45 -25 -25)"/>
+    </g>
+
+    <!-- Lion features (stylized) -->
+    <!-- Mane suggestion with smaller gears -->
+    <circle cx="-15" cy="-15" r="5" fill="none" stroke="#FF9933" stroke-width="2"/>
+    <circle cx="15" cy="-15" r="5" fill="none" stroke="#FF9933" stroke-width="2"/>
+    <circle cx="-20" cy="0" r="5" fill="none" stroke="#FF9933" stroke-width="2"/>
+    <circle cx="20" cy="0" r="5" fill="none" stroke="#FF9933" stroke-width="2"/>
+
+    <!-- Industrial/movement lines -->
+    <line x1="-25" y1="-10" x2="-15" y2="-5" stroke="#FF6600" stroke-width="1.5"/>
+    <line x1="25" y1="-10" x2="15" y2="-5" stroke="#FF6600" stroke-width="1.5"/>
+    <line x1="-25" y1="5" x2="-15" y2="0" stroke="#FF6600" stroke-width="1.5"/>
+    <line x1="25" y1="5" x2="15" y2="0" stroke="#FF6600" stroke-width="1.5"/>
+  </g>
+
+  <!-- MAKE IN INDIA Text -->
+  <text x="60" y="108" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#FF9933" letter-spacing="1">MAKE IN INDIA</text>
+</svg>

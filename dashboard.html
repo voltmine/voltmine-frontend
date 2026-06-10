@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Go VoltMine | Monitor Your Bitcoin Mining</title>
+    <meta name="description" content="Track your Bitcoin mining earnings, manage your miners, and withdraw funds from your Go VoltMine dashboard.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/dark-style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/advanced.css">
+    <link rel="stylesheet" href="css/cyber-effects.css">
+    <link rel="stylesheet" href="css/logo-animation.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="voltmine-logo-light.svg" alt="VoltMine" class="logo">
+            </div>
+            <div class="nav-links">
+                <a href="#" onclick="showDashboardTab('overview')" class="dash-tab active" data-tab="overview">Overview</a>
+                <a href="#" onclick="showDashboardTab('earnings')" class="dash-tab" data-tab="earnings">Earnings</a>
+                <a href="#" onclick="showDashboardTab('history')" class="dash-tab" data-tab="history">History</a>
+                <a href="#" onclick="showDashboardTab('settings')" class="dash-tab" data-tab="settings">Settings</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <!-- Overview Tab -->
+            <div id="overview" class="dash-content active">
+                <!-- Header -->
+                <div class="dashboard-header">
+                    <div>
+                        <h1>My Mining Dashboard</h1>
+                        <p class="dashboard-subtitle" id="userEmail">Loading...</p>
+                    </div>
+                    <div class="header-actions">
+                        <a href="mailto:support@govoltmine.xyz" class="btn-outline btn-small">
+                            📧 Support
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Balance Card -->
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <div>
+                            <p class="balance-label">Total Balance</p>
+                            <h2 class="balance-amount" id="totalBalance">0.00000000 BTC</h2>
+                            <p class="balance-usd" id="balanceUSD">$0.00 USD</p>
+                        </div>
+                        <button class="btn-primary" onclick="showWithdrawModal()">Withdraw</button>
+                    </div>
+
+                    <div class="balance-stats">
+                        <div class="balance-stat">
+                            <span class="stat-icon">⛏️</span>
+                            <div>
+                                <p class="stat-value" id="totalMiners">0</p>
+                                <p class="stat-label">Active Miners</p>
+                            </div>
+                        </div>
+                        <div class="balance-stat">
+                            <span class="stat-icon">⚡</span>
+                            <div>
+                                <p class="stat-value" id="totalHashrate">0 TH/s</p>
+                                <p class="stat-label">Total Hashrate</p>
+                            </div>
+                        </div>
+                        <div class="balance-stat">
+                            <span class="stat-icon">💰</span>
+                            <div>
+                                <p class="stat-value" id="totalEarnings">0 BTC</p>
+                                <p class="stat-label">Lifetime Earnings</p>
+                            </div>
+                        </div>
+                        <div class="balance-stat">
+                            <span class="stat-icon">📈</span>
+                            <div>
+                                <p class="stat-value" id="avgDailyEarnings">0 BTC</p>
+                                <p class="stat-label">Daily Avg (30d)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROI Card -->
+                <div class="roi-card">
+                    <h3>📊 ROI Analysis</h3>
+                    <div class="roi-grid">
+                        <div class="roi-stat">
+                            <p class="roi-label">Total Investment</p>
+                            <p class="roi-value" id="totalInvestment">$0</p>
+                        </div>
+                        <div class="roi-stat">
+                            <p class="roi-label">Current Value</p>
+                            <p class="roi-value" id="currentValue">$0</p>
+                        </div>
+                        <div class="roi-stat">
+                            <p class="roi-label">Total Profit</p>
+                            <p class="roi-value profit" id="totalProfit">$0</p>
+                        </div>
+                        <div class="roi-stat">
+                            <p class="roi-label">ROI Percentage</p>
+                            <p class="roi-value" id="roiPercentage">0%</p>
+                        </div>
+                        <div class="roi-stat">
+                            <p class="roi-label">Break Even Date</p>
+                            <p class="roi-value" id="breakEvenDate">Calculating...</p>
+                        </div>
+                        <div class="roi-stat">
+                            <p class="roi-label">Days Mining</p>
+                            <p class="roi-value" id="daysMining">0 days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miners Section -->
+                <div class="section-title">
+                    <h2>My Miners</h2>
+                </div>
+
+                <div id="minersGrid" class="miners-grid">
+                    <!-- Miners will be loaded here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <div class="empty-icon">📦</div>
+                    <h3>No Miners Yet</h3>
+                    <p>You haven't purchased any mining hardware yet.</p>
+                    <a href="index.html#marketplace" class="btn-primary">Browse Marketplace</a>
+                </div>
+            </div>
+
+            <!-- Earnings Tab -->
+            <div id="earnings" class="dash-content">
+                <h1>Earnings Overview</h1>
+
+                <div class="earnings-summary">
+                    <div class="earnings-card">
+                        <h3>Today's Earnings</h3>
+                        <p class="earnings-big" id="todayEarnings">0.00000000 BTC</p>
+                        <p class="earnings-small" id="todayEarningsUSD">$0.00</p>
+                    </div>
+                    <div class="earnings-card">
+                        <h3>This Week</h3>
+                        <p class="earnings-big" id="weekEarnings">0.00000000 BTC</p>
+                        <p class="earnings-small" id="weekEarningsUSD">$0.00</p>
+                    </div>
+                    <div class="earnings-card">
+                        <h3>This Month</h3>
+                        <p class="earnings-big" id="monthEarnings">0.00000000 BTC</p>
+                        <p class="earnings-small" id="monthEarningsUSD">$0.00</p>
+                    </div>
+                    <div class="earnings-card">
+                        <h3>All Time</h3>
+                        <p class="earnings-big" id="allTimeEarnings">0.00000000 BTC</p>
+                        <p class="earnings-small" id="allTimeEarningsUSD">$0.00</p>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Earnings Chart (Last 30 Days)</h3>
+                    <canvas id="earningsChart" width="800" height="300"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Earnings by Miner</h3>
+                    <div id="minerBreakdown"></div>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history" class="dash-content">
+                <h1>Transaction History</h1>
+
+                <div class="history-filters">
+                    <select id="historyFilter" onchange="filterHistory(this.value)">
+                        <option value="all">All Transactions</option>
+                        <option value="mining">Mining Rewards</option>
+                        <option value="withdrawals">Withdrawals</option>
+                    </select>
+                </div>
+
+                <div id="historyTable"></div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings" class="dash-content">
+                <h1>Settings</h1>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Withdrawal Address</h3>
+                        <p class="settings-desc">Update your Bitcoin address for withdrawals</p>
+                        <div class="form-group">
+                            <input type="text" id="settingsBtcAddress" placeholder="bc1q...">
+                        </div>
+                        <button class="btn-primary" onclick="updateBtcAddress()">Save Address</button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Notifications</h3>
+                        <p class="settings-desc">Manage your notification preferences</p>
+                        <div class="settings-toggle">
+                            <label>
+                                <input type="checkbox" id="notifyEarnings" checked>
+                                <span>Daily earnings summary</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="notifyWithdrawals" checked>
+                                <span>Withdrawal confirmations</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="notifyMaintenance" checked>
+                                <span>Maintenance alerts</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Account Info</h3>
+                        <p class="settings-desc">Your account details</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value" id="settingsEmail">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Member Since:</span>
+                                <span class="info-value" id="settingsMemberSince">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Total Miners:</span>
+                                <span class="info-value" id="settingsTotalMiners">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Support</h3>
+                        <p class="settings-desc">Need help? Contact us</p>
+                        <a href="https://t.me/dsmrcrypto" target="_blank" class="btn-telegram">
+                            <span class="telegram-icon">✈️</span>
+                            Contact @dsmrcrypto
+                        </a>
+                        <div class="compliance-mini">
+                            <div class="compliance-item">
+                                <span class="flag">🇮🇳</span>
+                                <span>Indian Privacy Laws</span>
+                            </div>
+                            <div class="compliance-item">
+                                <span class="flag">🇬🇪</span>
+                                <span>Georgian Privacy Laws</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Withdraw Bitcoin</h3>
+                <button class="modal-close" onclick="closeWithdrawModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Amount (BTC)</label>
+                    <input type="number" id="withdrawAmount" step="0.00000001" min="0.001" placeholder="0.001">
+                    <p class="input-hint">Minimum: 0.001 BTC • Available: <span id="availableBalance">0.00000000</span> BTC</p>
+                </div>
+                <div class="form-group">
+                    <label>Bitcoin Address</label>
+                    <input type="text" id="withdrawAddress" placeholder="bc1q...">
+                </div>
+                <div class="withdrawal-summary">
+                    <div class="summary-row">
+                        <span>Amount:</span>
+                        <span id="withdrawAmountDisplay">0.00000000 BTC</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Network Fee:</span>
+                        <span>Covered by us</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>You Receive:</span>
+                        <span id="withdrawReceiveDisplay">0.00000000 BTC</span>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <p>⚠️ Please double-check your Bitcoin address. Transactions cannot be reversed.</p>
+                    <p>⏱️ Withdrawals are processed within 24 hours.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" onclick="closeWithdrawModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitWithdraw()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard-advanced.js"></script>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;">
+        <p>&copy; 2026 Go VoltMine. A PRX Holdings Company.</p>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+            📧 support@govoltmine.xyz • contact@govoltmine.xyz
+        </p>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+            Designed by an Indian &#127470;&#127475; in Georgia &#127468;&#127466; for the world &#127757;
+        </p>
+    </footer>
+
+    <script src="js/logo-animation.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lightning bolt icon -->
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4d03f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af37;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Electric circle background -->
+  <circle cx="30" cy="30" r="25" fill="url(#blueGradient)" opacity="0.15"/>
+
+  <!-- Lightning bolt -->
+  <path d="M 35 10 L 20 30 L 28 30 L 25 50 L 40 28 L 32 28 Z"
+        fill="url(#goldGradient)"
+        stroke="#d4af37"
+        stroke-width="1"/>
+
+  <!-- VoltMine text -->
+  <text x="65" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">
+    Volt
+  </text>
+  <text x="110" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="url(#goldGradient)">
+    Mine
+  </text>
+
+  <!-- Tagline -->
+  <text x="65" y="48" font-family="Arial, sans-serif" font-size="8" fill="#64748b" letter-spacing="1">
+    POWERED BY PRX HOLDINGS
+  </text>
+</svg>

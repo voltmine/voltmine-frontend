@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go VoltMine - Professional Bitcoin Cloud Mining | Powered by PRX Holdings</title>
+    <meta name="description" content="Professional Bitcoin cloud mining with real hardware. 51% ownership, daily payouts, transparent costs. Start mining without buying equipment.">
+    <meta name="keywords" content="bitcoin mining, cloud mining, cryptocurrency, ASIC miners, bitcoin earnings">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/dark-style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/cyber-effects.css">
+    <link rel="stylesheet" href="css/logo-animation.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/emoji-fix.css">
+    <link rel="stylesheet" href="css/mining-viz.css">
+</head>
+<body>
+    <!-- Centered Logo Intro -->
+    <div class="logo-intro">
+        <img src="voltmine-logo-light.svg" alt="Go VoltMine">
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar-modern">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="voltmine-logo-light.svg" alt="Go VoltMine" class="logo">
+            </div>
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#faq">FAQ</a>
+                <a href="#legal">Legal</a>
+                <a href="#custom">Custom</a>
+                <a href="login.html" class="btn-nav">Login</a>
+                <a href="login.html" class="btn-primary-nav">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Floating Bitcoin -->
+    <section class="hero-modern">
+        <div class="bitcoin-animation">
+            <div class="bitcoin-float bitcoin-1">₿</div>
+            <div class="bitcoin-float bitcoin-2">₿</div>
+            <div class="bitcoin-float bitcoin-3">₿</div>
+        </div>
+        <div class="particles-container" id="particles"></div>
+
+        <div class="container">
+            <div class="hero-content-modern">
+                <span class="badge-animated">⚡ POWERED BY PRX HOLDINGS</span>
+                <h1 class="hero-title-animated">
+                    Start Mining Bitcoin<br>
+                    <span class="gradient-text">Without The Hardware</span>
+                </h1>
+                <p class="hero-subtitle-modern">
+                    Professional-grade ASIC miners hosted in optimized facilities.
+                    Real-time earnings, transparent costs, instant withdrawals.
+                </p>
+
+                <div class="hero-stats-animated">
+                    <div class="stat-animated">
+                        <div class="stat-number glitch" data-count="95">0</div>
+                        <div class="stat-label">TH/s per S19</div>
+                    </div>
+                    <div class="stat-animated">
+                        <div class="stat-number digital-counter" data-count="99.9">0</div>
+                        <div class="stat-label">% Uptime</div>
+                    </div>
+                    <div class="stat-animated">
+                        <div class="stat-number" data-count="24">0</div>
+                        <div class="stat-label">Hour Payouts</div>
+                    </div>
+                </div>
+
+                <div class="hero-cta-modern">
+                    <a href="#marketplace" class="btn-primary-large">
+                        <span>Start Mining Now</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#how-it-works" class="btn-outline-large">
+                        <span>Learn More</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Flow Diagram -->
+    <section class="flow-section">
+        <div class="container">
+            <h2 class="section-title-animated">How Cloud Mining Works</h2>
+            <p class="section-subtitle">Simplified mining in 4 steps</p>
+
+            <div class="flow-diagram">
+                <div class="flow-step" data-step="1">
+                    <div class="flow-icon">💳</div>
+                    <h3>Purchase Mining Power</h3>
+                    <p>Choose from our range of ASIC miners. Pay with crypto for instant activation.</p>
+                    <div class="flow-connector"></div>
+                </div>
+
+                <div class="flow-step" data-step="2">
+                    <div class="flow-icon">⚙️</div>
+                    <h3>We Deploy & Configure</h3>
+                    <p>Hardware is set up in our optimized facility with industrial cooling and 24/7 monitoring.</p>
+                    <div class="flow-connector"></div>
+                </div>
+
+                <div class="flow-step" data-step="3">
+                    <div class="flow-icon">⛏️</div>
+                    <h3>Start Mining Bitcoin</h3>
+                    <p>Your miners join our pool and begin solving blocks. Real-time dashboard tracks everything.</p>
+                    <div class="flow-connector"></div>
+                </div>
+
+                <div class="flow-step" data-step="4">
+                    <div class="flow-icon">💰</div>
+                    <h3>Receive Daily Earnings</h3>
+                    <p>Net profits after electricity credited daily. Withdraw anytime to your wallet.</p>
+                </div>
+            </div>
+
+            <!-- Live Mining Visualization -->
+            <div style="max-width: 1000px; margin: 60px auto 0;">
+                <h3 style="text-align: center; color: var(--accent-gold); font-size: 24px; margin-bottom: 12px;">⛏️ Live Mining Visualization</h3>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 30px;">Real-time hash streams from our active mining pools</p>
+
+                <div class="mining-viz" style="background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 30px; min-height: 300px; position: relative; overflow: hidden; font-family: 'Courier New', monospace; font-size: 11px; line-height: 2;">
+                    <!-- Header -->
+                    <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 16px; align-items: center; z-index: 10;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="status-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: statusPulse 2s ease-in-out infinite;"></div>
+                            <span style="color: #10b981; font-size: 13px; font-family: 'Segoe UI', sans-serif;">ONLINE</span>
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 13px; font-family: 'Segoe UI', sans-serif;">
+                            <strong style="color: var(--accent-gold);">95 TH/s</strong> Active
+                        </div>
+                    </div>
+
+                    <!-- Live Hash Streams -->
+                    <div style="color: rgba(212, 175, 55, 0.7);">
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Block #842,156 | Hash: <span class="hash-value">00000000000000000002a7c4c1e48d76c5a37902165a270156b7a8d72728a054</span>
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Mining Pool: <span class="hash-value">Stratum+tcp://pool.voltmine.xyz:3333</span> | Workers: 47 Active
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Difficulty: <span class="hash-value">79,351,228,131,136</span> | Network Rate: 587 EH/s
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Miner S19-047: <span class="hash-value">95.2 TH/s</span> | Temp: 68°C | Power: 3247W | Shares: 1,842
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Miner S19-048: <span class="hash-value">94.8 TH/s</span> | Temp: 70°C | Power: 3251W | Shares: 1,819
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #f59e0b;">⚡</span> Share Found! <span class="hash-value">Difficulty: 8,192</span> | Accepted by pool
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> India Facility: <span class="hash-value">🇮🇳 22 miners online</span> | Uptime: 99.94%
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Georgia Facility: <span class="hash-value">🇬🇪 25 miners online</span> | Uptime: 99.96%
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #f59e0b;">⚡</span> Share Found! <span class="hash-value">Difficulty: 16,384</span> | Accepted by pool
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Payout Queue: <span class="hash-value">0.0847 BTC</span> | Next payout in 6h 23m
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #10b981;">▶</span> Last Block: <span class="hash-value">12 minutes ago</span> | Reward: 3.125 BTC + fees
+                        </div>
+                        <div class="hash-line" style="margin-bottom: 8px;">
+                            <span style="color: #3b82f6;">●</span> System Status: <span class="hash-value">All systems operational</span> | Latency: 12ms
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(26, 33, 56, 0.6); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 28px; color: var(--accent-gold); font-weight: 700;">24/7</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Mining Uptime</div>
+                    </div>
+                    <div style="background: rgba(26, 33, 56, 0.6); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 28px; color: var(--success); font-weight: 700;">99.9%</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">SLA Guarantee</div>
+                    </div>
+                    <div style="background: rgba(26, 33, 56, 0.6); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 28px; color: var(--accent-gold); font-weight: 700;">~0.0008</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">BTC/day (per S19)</div>
+                    </div>
+                    <div style="background: rgba(26, 33, 56, 0.6); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 28px; color: var(--success); font-weight: 700;">3250W</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Power per Unit</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center; padding: 20px; background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px;">
+                    <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">
+                        <strong style="color: var(--accent-gold);">🇮🇳 India</strong> & <strong style="color: var(--accent-gold);">🇬🇪 Georgia</strong> facilities operating at peak efficiency
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketplace with hover effects -->
+    <section id="marketplace" class="marketplace-modern">
+        <div class="container">
+            <h2 class="section-title-animated">Mining Packages</h2>
+            <p class="section-subtitle">All prices in USD • Pay with BTC, ETH, USDT</p>
+
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card" data-plan="starter">
+                    <div class="card-badge">STARTER</div>
+                    <div class="card-icon-large">⛏️</div>
+                    <h3>Antminer S19</h3>
+                    <p class="miner-specs">95 TH/s • 3250W • Latest Gen</p>
+
+                    <div class="price-section">
+                        <div class="price-main">$600</div>
+                        <div class="price-discount">Market: $1,350 (51% ownership stake)</div>
+                        <p style="font-size: 13px; color: var(--success); margin-top: 8px;">Save $750 with co-ownership!</p>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>✓ 51% ownership stake</li>
+                        <li>✓ Daily BTC payouts</li>
+                        <li>✓ FREE trading signals 📊</li>
+                        <li>✓ 24/7 monitoring</li>
+                        <li>✓ Real-time dashboard</li>
+                    </ul>
+
+                    <div class="earnings-estimate">
+                        <div class="estimate-row">
+                            <span>Est. Daily:</span>
+                            <span class="highlight">0.00080 BTC</span>
+                        </div>
+                        <div class="estimate-row">
+                            <span>Monthly:</span>
+                            <span>~$162.00</span>
+                        </div>
+                    </div>
+
+                    <a href="login.html" class="btn-card neon-btn"><span>Purchase Now</span></a>
+                </div>
+
+                <!-- Pro Package -->
+                <div class="pricing-card featured" data-plan="pro">
+                    <div class="card-badge">MOST POPULAR</div>
+                    <div class="featured-glow"></div>
+                    <div class="card-icon-large">🔥</div>
+                    <h3>S19 - 5 Units</h3>
+                    <p class="miner-specs">475 TH/s • 16,250W • Pro Bundle</p>
+
+                    <div class="price-section">
+                        <div class="price-main">$3,000</div>
+                        <div class="price-discount">Market: $6,750 (51% ownership stake)</div>
+                        <p style="font-size: 13px; color: var(--success); margin-top: 8px;">Save $3,750 with co-ownership!</p>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>✓ 51% ownership stake</li>
+                        <li>✓ FREE premium trading signals 🚀</li>
+                        <li>✓ Priority support</li>
+                        <li>✓ Advanced analytics</li>
+                        <li>✓ Bulk discount applied</li>
+                    </ul>
+
+                    <div class="earnings-estimate">
+                        <div class="estimate-row">
+                            <span>Est. Daily:</span>
+                            <span class="highlight">0.00400 BTC</span>
+                        </div>
+                        <div class="estimate-row">
+                            <span>Monthly:</span>
+                            <span>~$810.00</span>
+                        </div>
+                    </div>
+
+                    <a href="login.html" class="btn-card btn-featured neon-btn"><span>Purchase Now</span></a>
+                </div>
+
+                <!-- Enterprise Package -->
+                <div class="pricing-card" data-plan="enterprise">
+                    <div class="card-badge">ENTERPRISE</div>
+                    <div class="card-icon-large">⚡</div>
+                    <h3>S19 - 10 Units</h3>
+                    <p class="miner-specs">950 TH/s • 32,500W • Elite Package</p>
+
+                    <div class="price-section">
+                        <div class="price-main">$6,000</div>
+                        <div class="price-discount">Market: $13,500 (51% ownership stake)</div>
+                        <p style="font-size: 13px; color: var(--success); margin-top: 8px;">Save $7,500 with co-ownership!</p>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>✓ 51% ownership stake</li>
+                        <li>✓ FREE VIP trading signals + analysis 📈</li>
+                        <li>✓ VIP support line</li>
+                        <li>✓ Custom dashboard</li>
+                        <li>✓ Maximum ROI potential</li>
+                    </ul>
+
+                    <div class="earnings-estimate">
+                        <div class="estimate-row">
+                            <span>Est. Daily:</span>
+                            <span class="highlight">0.00800 BTC</span>
+                        </div>
+                        <div class="estimate-row">
+                            <span>Monthly:</span>
+                            <span>~$1,620.00</span>
+                        </div>
+                    </div>
+
+                    <a href="login.html" class="btn-card neon-btn"><span>Purchase Now</span></a>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <p>Accepted Payment Methods:</p>
+                <div class="crypto-icons">
+                    <span class="crypto-badge">₿ Bitcoin</span>
+                    <span class="crypto-badge">Ξ Ethereum</span>
+                    <span class="crypto-badge">₮ USDT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FREE Trading Signals Section -->
+    <section class="flow-section" style="background: var(--bg-card); padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title-animated" style="font-size: 42px;">
+                🎁 FREE Trading Signals Included
+            </h2>
+            <p class="section-subtitle" style="font-size: 20px; margin-bottom: 60px;">
+                Every mining package includes complimentary crypto trading signals
+            </p>
+
+            <div class="flow-diagram" style="grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1100px;">
+                <div class="flow-step holo-card hover-lift" style="border: 2px solid var(--accent-gold); opacity: 1; transform: translateY(0);">
+                    <div class="flow-icon" style="font-size: 72px;">📊</div>
+                    <h3 style="color: var(--accent-gold); font-size: 22px; margin-bottom: 16px;">Market Analysis</h3>
+                    <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.7;">
+                        Professional crypto market analysis and trend predictions from expert traders
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted);">
+                        ✓ Daily market updates<br>
+                        ✓ Technical analysis<br>
+                        ✓ Support/resistance levels
+                    </div>
+                </div>
+
+                <div class="flow-step holo-card hover-lift" style="border: 2px solid var(--accent-gold); opacity: 1; transform: translateY(0);">
+                    <div class="flow-icon" style="font-size: 72px;">🚀</div>
+                    <h3 style="color: var(--accent-gold); font-size: 22px; margin-bottom: 16px;">Buy/Sell Signals</h3>
+                    <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.7;">
+                        Real-time entry and exit points for Bitcoin, Ethereum, and top altcoins
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted);">
+                        ✓ Instant Telegram alerts<br>
+                        ✓ Entry/exit prices<br>
+                        ✓ Stop-loss recommendations
+                    </div>
+                </div>
+
+                <div class="flow-step holo-card hover-lift" style="border: 2px solid var(--accent-gold); opacity: 1; transform: translateY(0);">
+                    <div class="flow-icon" style="font-size: 72px;">💎</div>
+                    <h3 style="color: var(--accent-gold); font-size: 22px; margin-bottom: 16px;">VIP Insights</h3>
+                    <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.7;">
+                        Premium members get exclusive whale movement alerts and ICO opportunities
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted);">
+                        ✓ Whale wallet tracking<br>
+                        ✓ Early gem discoveries<br>
+                        ✓ Portfolio strategies
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <div style="display: inline-block; background: rgba(212, 175, 55, 0.1); border: 2px solid var(--accent-gold); border-radius: 16px; padding: 32px 48px; max-width: 800px;">
+                    <p style="font-size: 18px; color: var(--text-primary); margin-bottom: 16px;">
+                        <strong>💰 Value: $199/month</strong> • <span style="color: var(--success);">FREE with any mining package</span>
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">
+                        Join our Telegram channel after purchase to receive signals instantly
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title-animated">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is cloud mining?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Cloud mining allows you to mine cryptocurrency without owning physical hardware. You purchase mining power from our facility where we host and maintain the equipment. You receive daily payouts based on your 51% ownership stake of the mining rewards minus operational costs (electricity, maintenance).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I get started?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>4 Simple Steps:</strong></p>
+                        <ol style="margin-left: 20px; margin-top: 8px;">
+                            <li>Create an account and complete KYC verification (4 documents required)</li>
+                            <li>Choose your mining package (Starter, Pro, or Enterprise)</li>
+                            <li>Pay with cryptocurrency (BTC, ETH, or USDT)</li>
+                            <li>Start earning Bitcoin daily - tracked in your dashboard</li>
+                        </ol>
+                        <p style="margin-top: 12px;"><a href="login.html" style="color: var(--accent-gold);">Get Started →</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is the 51% co-ownership model?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You receive <strong>51% beneficial ownership</strong> of mining rewards while Go VoltMine (PRX Holdings) retains 49% ownership of the physical hardware. This co-ownership structure allows us to offer discounted equipment prices (51% of market value) while ensuring sustainable operations.</p>
+                        <p style="margin-top: 8px;"><strong>Important:</strong> You cannot take physical possession of the equipment. All hardware remains in our facilities.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How are earnings calculated?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Formula:</strong></p>
+                        <p style="margin-top: 8px;">Daily Earnings = (Your Hashrate ÷ Pool Hashrate) × Block Rewards × 51% - Electricity - Maintenance Fee (up to 15%)</p>
+                        <p style="margin-top: 12px;">All calculations are transparent and displayed in your dashboard. BTC is credited daily based on actual mining performance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>When do I receive payouts?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Mining rewards are credited to your account balance <strong>daily</strong>. You can request withdrawals anytime with a minimum of <strong>0.001 BTC</strong>.</p>
+                        <p style="margin-top: 8px;">Withdrawal requests are processed within <strong>24 hours</strong> to your whitelisted Bitcoin address.</p>
+                        <p style="margin-top: 8px; color: var(--text-muted); font-size: 13px;">Note: All withdrawal addresses must be pre-verified per AML policy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Where are the miners located?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>All mining equipment is hosted in our professionally managed facilities:</p>
+                        <ul style="margin-top: 8px;">
+                            <li>🇮🇳 <strong>India</strong> - Primary facility with optimized cooling</li>
+                            <li>🇬🇪 <strong>Georgia</strong> - Secondary facility with low electricity costs</li>
+                        </ul>
+                        <p style="margin-top: 12px;"><strong>Features:</strong></p>
+                        <ul>
+                            <li>• Industrial cooling systems</li>
+                            <li>• Redundant power supply</li>
+                            <li>• 24/7 security monitoring</li>
+                            <li>• 99.9% uptime guarantee</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I cancel or get a refund?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> All sales are final. You forfeit your ownership stake if you terminate your account. Outstanding balances will be paid out per standard withdrawal process. No equipment buyback or refunds provided.</p>
+                        <p style="margin-top: 8px;">See our <a href="terms.html" style="color: var(--accent-gold);">Terms of Service</a> for details.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are FREE trading signals?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>All packages include premium trading signals (<strong>$199/month value - FREE</strong>):</p>
+                        <ul style="margin-top: 8px;">
+                            <li>📊 Daily market analysis</li>
+                            <li>🚀 Buy/sell recommendations</li>
+                            <li>💎 VIP insider insights</li>
+                            <li>📈 Technical indicators and trends</li>
+                        </ul>
+                        <p style="margin-top: 12px;">Maximize your crypto profits beyond just mining!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal & Compliance Section -->
+    <section id="legal" class="faq-section" style="background: linear-gradient(180deg, #0a0e1a 0%, #0f1421 100%);">
+        <div class="container">
+            <h2 class="section-title-animated">Legal & Compliance</h2>
+            <p class="section-subtitle">🇮🇳 Adheres to Indian and 🇬🇪 Georgian privacy laws</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>🔒 Anti-Money Laundering (AML) Policy</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Go VoltMine strictly enforces AML compliance to prevent financial crimes.</strong></p>
+                        <p style="margin-top: 12px;"><strong>Mandatory Requirements:</strong></p>
+                        <ul>
+                            <li>• <strong>Wallet Whitelisting:</strong> All withdrawal addresses must be pre-verified and whitelisted</li>
+                            <li>• <strong>4 ID Documents Required:</strong>
+                                <ul style="margin-left: 20px; margin-top: 8px;">
+                                    <li>1. Government-issued photo ID (Passport, Driver's License, or National ID)</li>
+                                    <li>2. Proof of Address (Utility bill, bank statement - within 3 months)</li>
+                                    <li>3. Selfie holding your ID document</li>
+                                    <li>4. Source of Funds declaration (bank statement, employment letter, or tax return)</li>
+                                </ul>
+                            </li>
+                            <li>• <strong>Enhanced Due Diligence:</strong> Transactions over $10,000 USD require additional verification</li>
+                            <li>• <strong>Ongoing Monitoring:</strong> All transactions are monitored for suspicious activity</li>
+                            <li>• <strong>No Anonymous Accounts:</strong> Full KYC verification mandatory for all users</li>
+                        </ul>
+                        <p style="margin-top: 12px; color: var(--warning);"><strong>⚠️ Non-Compliance:</strong> Failure to provide required documentation or suspicious activity will result in immediate account suspension and fund freezing pending investigation.</p>
+                        <p style="margin-top: 8px;">We cooperate fully with law enforcement and regulatory authorities.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>🇮🇳 Indian Privacy Law Compliance</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Go VoltMine adheres to Indian data protection and privacy regulations:</strong></p>
+                        <ul>
+                            <li>• <strong>Digital Personal Data Protection Act (DPDPA) 2023</strong> compliance</li>
+                            <li>• Data stored on locally hosted infrastructure in India</li>
+                            <li>• Right to access, correct, and erase personal data</li>
+                            <li>• Transparent data processing practices</li>
+                            <li>• No unauthorized cross-border data transfer</li>
+                            <li>• Secure encryption for all sensitive information</li>
+                            <li>• User consent obtained for all data collection</li>
+                        </ul>
+                        <p style="margin-top: 12px;">Your data is protected under Indian law and never sold to third parties.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>🇬🇪 Georgian Privacy Law Compliance</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Go VoltMine operations comply with Georgian data protection standards:</strong></p>
+                        <ul>
+                            <li>• <strong>Law of Georgia on Personal Data Protection</strong> compliance</li>
+                            <li>• Mining facilities located in Georgia with full regulatory approval</li>
+                            <li>• GDPR-aligned data handling practices</li>
+                            <li>• Independent data protection officer oversight</li>
+                            <li>• Regular compliance audits and certifications</li>
+                            <li>• Transparent privacy policies available in Georgian and English</li>
+                            <li>• Right to lodge complaints with Georgian data protection authority</li>
+                        </ul>
+                        <p style="margin-top: 12px;">Operations meet both Indian and Georgian legal standards for maximum user protection.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>📜 Terms of Service & Service Agreement</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>All users must accept our comprehensive legal agreements:</strong></p>
+                        <ul>
+                            <li>• <strong><a href="terms.html" target="_blank" style="color: var(--accent-gold);">Terms of Service</a></strong> - Platform usage rules, liability limitations, dispute resolution</li>
+                            <li>• <strong><a href="contract.html" target="_blank" style="color: var(--accent-gold);">Co-Ownership Service Agreement</a></strong> - Legal framework for 51% ownership stake, equipment rights, termination conditions</li>
+                            <li>• <strong>Risk Disclosure:</strong> Mining involves significant financial risk. No guaranteed returns.</li>
+                            <li>• <strong>No Refunds:</strong> All sales final. Equipment cannot be physically retrieved.</li>
+                            <li>• <strong>Termination Rights:</strong> PRX Holdings reserves the right to terminate services with 30 days notice</li>
+                            <li>• <strong>Governing Law:</strong> Disputes governed by Indian and Georgian law</li>
+                        </ul>
+                        <p style="margin-top: 12px; color: var(--warning);"><strong>⚠️ Mandatory:</strong> Account creation requires acceptance of both documents. Checkbox verification enforced.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>⚠️ Investment Risk Disclosure</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p style="color: var(--warning); font-weight: 600;">⚠️ CRYPTOCURRENCY MINING INVOLVES SUBSTANTIAL FINANCIAL RISK</p>
+                        <p style="margin-top: 12px;"><strong>Key Risk Factors:</strong></p>
+                        <ul>
+                            <li>• <strong>Bitcoin Price Volatility:</strong> Price can fluctuate dramatically, affecting profitability</li>
+                            <li>• <strong>Network Difficulty:</strong> Mining difficulty increases over time, reducing rewards</li>
+                            <li>• <strong>Hardware Obsolescence:</strong> Equipment may become unprofitable before ROI</li>
+                            <li>• <strong>Electricity Costs:</strong> May exceed mining revenue during low BTC prices</li>
+                            <li>• <strong>Regulatory Changes:</strong> Government restrictions may impact operations</li>
+                            <li>• <strong>Service Termination:</strong> PRX Holdings may cease operations at any time</li>
+                            <li>• <strong>No Guarantees:</strong> Past performance does not predict future results</li>
+                            <li>• <strong>Total Loss Possible:</strong> You may lose 100% of your investment</li>
+                        </ul>
+                        <p style="margin-top: 12px; font-weight: 600; color: var(--warning);">⚠️ ONLY INVEST WHAT YOU CAN AFFORD TO LOSE ENTIRELY</p>
+                        <p style="margin-top: 8px; font-size: 13px;">This is not financial advice. Consult a licensed financial advisor before investing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>💰 Accepted Payment Methods</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Cryptocurrency payments only:</strong></p>
+                        <ul>
+                            <li>• Bitcoin (BTC)</li>
+                            <li>• Ethereum (ETH)</li>
+                            <li>• USDT (Tether)</li>
+                        </ul>
+                        <p style="margin-top: 12px;"><strong>Payment Processors:</strong></p>
+                        <ul>
+                            <li>• <strong>NOWPayments</strong> - Instant activation, low fees</li>
+                            <li>• <strong>BTCPay Server</strong> - Self-hosted, maximum privacy</li>
+                        </ul>
+                        <p style="margin-top: 12px;"><strong>Not Accepted:</strong> Credit cards, debit cards, bank transfers, PayPal, cash</p>
+                        <p style="margin-top: 8px; font-size: 13px; color: var(--text-muted);">All transactions require AML verification before processing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>🏢 Corporate Structure & Liability</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Go VoltMine is operated by PRX Holdings</strong></p>
+                        <ul>
+                            <li>• Registered business entity in India and Georgia</li>
+                            <li>• Limited liability structure protects both parties</li>
+                            <li>• Independent audit trails for financial transparency</li>
+                            <li>• Insurance coverage for facility damage (not customer losses)</li>
+                            <li>• Professional management team with crypto industry experience</li>
+                        </ul>
+                        <p style="margin-top: 12px;"><strong>Liability Limitations:</strong></p>
+                        <ul>
+                            <li>• PRX Holdings not liable for market losses or mining unprofitability</li>
+                            <li>• Force majeure events exempt from liability</li>
+                            <li>• Maximum liability capped at purchase price paid</li>
+                            <li>• No liability for regulatory seizures or government action</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Custom Setup Section -->
+    <section id="custom" class="contact-section-modern">
+        <div class="container">
+            <div class="contact-box-modern">
+                <h2>🛠️ Custom Mining Solutions</h2>
+                <p>Tailored infrastructure for enterprises and high-volume miners</p>
+
+                <div style="max-width: 800px; margin: 30px auto; text-align: left; background: rgba(26, 33, 56, 0.6); padding: 30px; border-radius: 12px; border: 1px solid var(--border);">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 16px;">Custom Deployment Options:</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;">✓ <strong>Dedicated Hardware Clusters</strong> - Full racks of S19/S19 Pro with isolated management</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>Custom Ownership Splits</strong> - Negotiate ownership percentages beyond standard 51%</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>White-Label Dashboard</strong> - Branded platform for resellers and institutional clients</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>API Integration</strong> - Direct access to mining stats, payouts, and control systems</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>Custom Pool Configuration</strong> - Mine to your preferred pools with your own credentials</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>Flexible Pricing Models</strong> - Volume discounts, lease-to-own, revenue sharing arrangements</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>Geographic Preference</strong> - Choose India 🇮🇳 or Georgia 🇬🇪 facility location</li>
+                        <li style="margin-bottom: 12px;">✓ <strong>SLA Guarantees</strong> - Custom uptime commitments with compensation clauses</li>
+                    </ul>
+
+                    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 12px;">Who Should Request Custom Setup?</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">• Mining operations requiring 50+ units (4,750+ TH/s)</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">• Investment funds and institutional buyers</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">• Resellers and white-label partners</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">• Businesses with specific compliance or reporting requirements</p>
+                    </div>
+
+                    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center;">
+                        <p style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">📋 Get a Custom Quote</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Tell us your requirements and we'll design a solution tailored to your needs with transparent pricing.</p>
+                        <div class="contact-actions">
+                            <a href="mailto:contact@govoltmine.xyz?subject=Custom Mining Solution Inquiry" class="btn-primary-large">
+                                Request Quote
+                            </a>
+                        </div>
+                        <p style="margin-top: 16px; font-size: 13px; color: var(--text-muted);">
+                            Typical response time: 24-48 hours<br>
+                            Minimum commitment: $30,000 USD equivalent
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <a href="login.html" class="btn-outline-large">
+                        ← Standard Packages
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-grid-modern">
+                <div class="footer-col">
+                    <img src="voltmine-logo.svg" alt="Go VoltMine" class="footer-logo">
+                    <p><strong>Go VoltMine</strong> - Professional Bitcoin mining infrastructure with transparent operations and real-time monitoring.</p>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">A PRX Holdings Company</p>
+                    <div class="compliance-footer">
+                        <span class="compliance-badge">🇮🇳 Indian Laws</span>
+                        <span class="compliance-badge">🇬🇪 Georgian Laws</span>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="#marketplace">Marketplace</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#custom">Custom Setup</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="login.html">Login</a>
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">📧 Contact:</p>
+                        <a href="mailto:support@govoltmine.xyz" style="font-size: 13px;">support@govoltmine.xyz</a>
+                        <a href="mailto:contact@govoltmine.xyz" style="font-size: 13px;">contact@govoltmine.xyz</a>
+                        <a href="https://t.me/dsmrcrypto" target="_blank" style="font-size: 13px;">Telegram: @dsmrcrypto</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal & Compliance</h4>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contract.html">Service Agreement</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#legal">AML Policy</a>
+                    <a href="#legal">Privacy Compliance</a>
+                    <a href="#legal">Risk Disclosure</a>
+                    <p class="footer-small" style="margin-top: 12px;">🇮🇳 Indian & 🇬🇪 Georgian Laws</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Infrastructure</h4>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Mining Locations:</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">🇮🇳 India - Primary Facility</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">🇬🇪 Georgia - Secondary Facility</p>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 12px;">Hardware:</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">Antminer S19 (95 TH/s)</p>
+                    <p style="font-size: 13px; color: var(--text-muted);">99.9% Uptime SLA</p>
+                    <p class="footer-small" style="margin-top: 12px;">🏠 Locally Hosted Infrastructure</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom-modern">
+                <p>&copy; 2026 Go VoltMine. A PRX Holdings Company. All rights reserved.</p>
+                <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary); font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;">
+                    Designed by an Indian &#127470;&#127475; in Georgia &#127468;&#127466; for the world &#127757;
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Make in India Logo (Bottom Right) -->
+    <div style="position: fixed; bottom: 100px; right: 24px; z-index: 9997; opacity: 0.9; transition: opacity 0.3s ease;">
+        <img src="make-in-india.png" alt="Make in India" style="width: 100px; height: auto; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+    </div>
+
+    <script src="js/animations.js"></script>
+    <script src="js/cyber-animations.js"></script>
+    <script src="js/live-ticker.js"></script>
+    <script src="js/logo-animation.js"></script>
+    <script src="js/faq-init.js"></script>
+    <script src="js/mining-animation.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

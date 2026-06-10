@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin CRM - Go VoltMine | Manage Mining Operations</title>
+    <meta name="description" content="Go VoltMine Admin Panel - Manage customers, miners, payouts and operations.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/dark-style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/cyber-effects.css">
+    <link rel="stylesheet" href="css/logo-animation.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="voltmine-logo-light.svg" alt="VoltMine" class="logo">
+            </div>
+            <div class="nav-links">
+                <a href="#" onclick="showTab('overview')" class="tab-link active" data-tab="overview">Overview</a>
+                <a href="#" onclick="showTab('customers')" class="tab-link" data-tab="customers">Customers</a>
+                <a href="#" onclick="showTab('miners')" class="tab-link" data-tab="miners">Miners</a>
+                <a href="#" onclick="showTab('payouts')" class="tab-link" data-tab="payouts">Payouts</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="container">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <h1>Admin Dashboard</h1>
+
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div>
+                            <p class="stat-number" id="totalCustomers">0</p>
+                            <p class="stat-label">Total Customers</p>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">⛏️</div>
+                        <div>
+                            <p class="stat-number" id="totalSoldMiners">0</p>
+                            <p class="stat-label">Sold Miners</p>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div>
+                            <p class="stat-number" id="availableMiners">0</p>
+                            <p class="stat-label">Available Stock</p>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div>
+                            <p class="stat-number" id="pendingPayouts">0</p>
+                            <p class="stat-label">Pending Payouts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h2>Quick Actions</h2>
+                    <div class="quick-actions">
+                        <button class="action-btn" onclick="showAssignMinerModal()">
+                            <span class="action-icon">⛏️</span>
+                            <span>Assign Miner</span>
+                        </button>
+                        <button class="action-btn" onclick="showUpdateEarningsModal()">
+                            <span class="action-icon">💰</span>
+                            <span>Update Earnings</span>
+                        </button>
+                        <button class="action-btn" onclick="window.open('contract.html', '_blank')">
+                            <span class="action-icon">📄</span>
+                            <span>Print Contract</span>
+                        </button>
+                        <button class="action-btn" onclick="window.open('https://t.me/dsmrcrypto', '_blank')">
+                            <span class="action-icon">✈️</span>
+                            <span>Support</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customers Tab -->
+            <div id="customers" class="tab-content">
+                <h1>Customers</h1>
+                <div id="customersTable"></div>
+            </div>
+
+            <!-- Miners Tab -->
+            <div id="miners" class="tab-content">
+                <h1>Miners</h1>
+                <div class="admin-toolbar">
+                    <button class="btn-primary" onclick="showAssignMinerModal()">Assign Miner</button>
+                </div>
+                <div id="minersTable"></div>
+            </div>
+
+            <!-- Payouts Tab -->
+            <div id="payouts" class="tab-content">
+                <h1>Pending Payouts</h1>
+                <div id="payoutsTable"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Miner Modal -->
+    <div id="assignMinerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Assign Miner to Customer</h3>
+                <button class="modal-close" onclick="closeAssignMinerModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select id="assignCustomerId" class="form-select"></select>
+                </div>
+                <div class="form-group">
+                    <label>Available Miner</label>
+                    <select id="assignMinerId" class="form-select"></select>
+                </div>
+                <div class="form-group">
+                    <label>Purchase Price (USD)</label>
+                    <input type="number" id="assignPrice" value="160" step="1">
+                </div>
+                <div class="modal-info" style="background: rgba(212,175,55,0.1); padding: 16px; border-radius: 8px; margin-top: 16px;">
+                    <p style="margin: 0; font-size: 13px;">⚠️ <strong>IMPORTANT:</strong> Customer must sign physical contract before miner assignment. Print contract from Quick Actions above.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" onclick="window.open('contract.html', '_blank')">📄 Print Contract</button>
+                <button class="btn-outline" onclick="closeAssignMinerModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitAssignMiner()">Assign Miner</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Earnings Modal -->
+    <div id="updateEarningsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Update Miner Earnings</h3>
+                <button class="modal-close" onclick="closeUpdateEarningsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Miner</label>
+                    <select id="earningsMinerId" class="form-select"></select>
+                </div>
+                <div class="form-group">
+                    <label>BTC Earned</label>
+                    <input type="number" id="earningsBTC" step="0.00000001" placeholder="0.00004">
+                </div>
+                <div class="form-group">
+                    <label>Electricity Cost (USD)</label>
+                    <input type="number" id="earningsElectricity" step="0.01" value="2.48">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" onclick="closeUpdateEarningsModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitUpdateEarnings()">Update Earnings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Payout Modal -->
+    <div id="processPayoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Process Payout</h3>
+                <button class="modal-close" onclick="closeProcessPayoutModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Payout ID</label>
+                    <input type="number" id="payoutId" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Transaction Hash</label>
+                    <input type="text" id="payoutTxHash" placeholder="Paste Bitcoin TX hash">
+                    <p class="input-hint">After sending BTC, paste the transaction hash from blockchain explorer</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" onclick="closeProcessPayoutModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitProcessPayout()">Mark as Sent</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;">
+        <p>&copy; 2026 Go VoltMine. A PRX Holdings Company.</p>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+            📧 support@govoltmine.xyz • contact@govoltmine.xyz
+        </p>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+            Designed by an Indian &#127470;&#127475; in Georgia &#127468;&#127466; for the world &#127757;
+        </p>
+    </footer>
+
+    <script src="js/logo-animation.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
