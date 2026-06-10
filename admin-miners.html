@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miner Management - VoltMine Admin</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/dark-style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <style>
+        .miners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .miner-card {
+            background: linear-gradient(135deg, #1a2138 0%, #0f1624 100%);
+            border: 1px solid #2a3552;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .miner-card.status-available {
+            border-left: 4px solid #10b981;
+        }
+
+        .miner-card.status-sold {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .miner-card.status-offline {
+            border-left: 4px solid #ef4444;
+        }
+
+        .miner-card.status-maintenance {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .miner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .miner-serial {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .miner-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-available {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status-sold {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .status-offline {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .status-maintenance {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .miner-details {
+            margin: 15px 0;
+        }
+
+        .miner-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .miner-detail label {
+            color: #8b92a8;
+            font-size: 14px;
+        }
+
+        .miner-detail value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .miner-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .miner-actions button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #2563eb;
+        }
+
+        .btn-sync {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-sync:hover {
+            background: #059669;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a2138;
+            border: 1px solid #2a3552;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #d4af37;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: #8b92a8;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b92a8;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #0f1624;
+            border: 1px solid #2a3552;
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            border: none;
+            border-radius: 6px;
+            color: #0a0e1a;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-add-miner {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            border: none;
+            border-radius: 6px;
+            color: #0a0e1a;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a2138 0%, #0f1624 100%);
+            border-radius: 12px;
+            border: 1px solid #2a3552;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #8b92a8;
+            margin-top: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #8b92a8;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #10b981;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="voltmine-logo-light.svg" alt="VoltMine" class="logo">
+            </div>
+            <div class="nav-links">
+                <a href="admin.html">Dashboard</a>
+                <a href="admin-miners.html" class="active">Miners</a>
+                <a href="admin.html#customers">Customers</a>
+                <a href="admin.html#payouts">Payouts</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 40px 20px;">
+        <div id="alertBox"></div>
+
+        <!-- Statistics Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">Total Miners</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="statAvailable">0</div>
+                <div class="stat-label">Available</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="statSold">0</div>
+                <div class="stat-label">Sold</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="statOffline">0</div>
+                <div class="stat-label">Offline</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="statHashrate">0</div>
+                <div class="stat-label">Total TH/s</div>
+            </div>
+        </div>
+
+        <!-- Top Actions -->
+        <div class="top-actions">
+            <h1 style="margin: 0;">Physical Miners</h1>
+            <button class="btn-add-miner" onclick="showAddMinerModal()">
+                ➕ Add New Miner
+            </button>
+        </div>
+
+        <!-- Miners Grid -->
+        <div id="minersContainer" class="loading">
+            Loading miners...
+        </div>
+    </div>
+
+    <!-- Add/Edit Miner Modal -->
+    <div id="minerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Miner</h2>
+                <button class="close-modal" onclick="closeMinerModal()">×</button>
+            </div>
+            <form id="minerForm" onsubmit="saveMiner(event)">
+                <input type="hidden" id="minerId">
+
+                <div class="form-group">
+                    <label>Serial Number *</label>
+                    <input type="text" id="serialNumber" placeholder="e.g., S19-001" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Model *</label>
+                    <input type="text" id="model" placeholder="e.g., Antminer S19" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Hashrate (TH/s) *</label>
+                    <input type="number" step="0.01" id="hashrate" placeholder="e.g., 95" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Purchase Cost (USD) *</label>
+                    <input type="number" step="0.01" id="purchaseCost" placeholder="e.g., 600" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="status">
+                        <option value="available">Available</option>
+                        <option value="sold">Sold</option>
+                        <option value="offline">Offline</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pool Worker Name</label>
+                    <input type="text" id="poolWorker" placeholder="e.g., voltmine.worker1">
+                </div>
+
+                <div class="form-group">
+                    <label>Pool URL</label>
+                    <input type="text" id="poolUrl" placeholder="e.g., stratum+tcp://slushpool.com:3333">
+                </div>
+
+                <div class="form-group">
+                    <label>Pool Username</label>
+                    <input type="text" id="poolUsername" placeholder="e.g., voltmine">
+                </div>
+
+                <button type="submit" class="btn-submit">Save Miner</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://api.govoltmine.xyz/api';
+        let miners = [];
+
+        // Check authentication
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Load miners on page load
+        loadMiners();
+
+        async function loadMiners() {
+            try {
+                const response = await fetch(`${API_URL}/admin/physical-miners`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    miners = data.miners || [];
+                    renderMiners();
+                    updateStats();
+                } else {
+                    showAlert('Failed to load miners: ' + (data.error || 'Unknown error'), 'error');
+                }
+            } catch (error) {
+                showAlert('Error loading miners: ' + error.message, 'error');
+            }
+        }
+
+        function renderMiners() {
+            const container = document.getElementById('minersContainer');
+
+            if (miners.length === 0) {
+                container.innerHTML = `
+                    <div class="loading">
+                        No miners added yet. Click "Add New Miner" to get started!
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = miners.map(miner => `
+                <div class="miner-card status-${miner.status}">
+                    <div class="miner-header">
+                        <div class="miner-serial">${miner.serial_number}</div>
+                        <span class="miner-status status-${miner.status}">${miner.status}</span>
+                    </div>
+
+                    <div class="miner-details">
+                        <div class="miner-detail">
+                            <label>Model:</label>
+                            <value>${miner.model}</value>
+                        </div>
+                        <div class="miner-detail">
+                            <label>Hashrate:</label>
+                            <value>${miner.hashrate} TH/s</value>
+                        </div>
+                        <div class="miner-detail">
+                            <label>Purchase Cost:</label>
+                            <value>$${miner.purchase_cost}</value>
+                        </div>
+                        ${miner.sold_price ? `
+                        <div class="miner-detail">
+                            <label>Sold Price:</label>
+                            <value>$${miner.sold_price}</value>
+                        </div>
+                        ` : ''}
+                        ${miner.pool_worker_name ? `
+                        <div class="miner-detail">
+                            <label>Pool Worker:</label>
+                            <value>${miner.pool_worker_name}</value>
+                        </div>
+                        ` : ''}
+                        ${miner.customer_id ? `
+                        <div class="miner-detail">
+                            <label>Customer ID:</label>
+                            <value>#${miner.customer_id}</value>
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="miner-actions">
+                        <button class="btn-edit" onclick="editMiner(${miner.id})">✏️ Edit</button>
+                        ${miner.status === 'sold' && miner.pool_worker_name ? `
+                        <button class="btn-sync" onclick="syncMiner(${miner.id})">🔄 Sync</button>
+                        ` : ''}
+                        ${miner.status !== 'sold' ? `
+                        <button class="btn-delete" onclick="deleteMiner(${miner.id})">🗑️ Delete</button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            container.className = 'miners-grid';
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').textContent = miners.length;
+            document.getElementById('statAvailable').textContent = miners.filter(m => m.status === 'available').length;
+            document.getElementById('statSold').textContent = miners.filter(m => m.status === 'sold').length;
+            document.getElementById('statOffline').textContent = miners.filter(m => m.status === 'offline').length;
+
+            const totalHashrate = miners.reduce((sum, m) => sum + m.hashrate, 0);
+            document.getElementById('statHashrate').textContent = totalHashrate.toFixed(2);
+        }
+
+        function showAddMinerModal() {
+            document.getElementById('modalTitle').textContent = 'Add New Miner';
+            document.getElementById('minerForm').reset();
+            document.getElementById('minerId').value = '';
+            document.getElementById('minerModal').classList.add('active');
+        }
+
+        function editMiner(id) {
+            const miner = miners.find(m => m.id === id);
+            if (!miner) return;
+
+            document.getElementById('modalTitle').textContent = 'Edit Miner';
+            document.getElementById('minerId').value = miner.id;
+            document.getElementById('serialNumber').value = miner.serial_number;
+            document.getElementById('model').value = miner.model;
+            document.getElementById('hashrate').value = miner.hashrate;
+            document.getElementById('purchaseCost').value = miner.purchase_cost;
+            document.getElementById('status').value = miner.status;
+            document.getElementById('poolWorker').value = miner.pool_worker_name || '';
+            document.getElementById('poolUrl').value = miner.pool_url || '';
+            document.getElementById('poolUsername').value = miner.pool_username || '';
+
+            document.getElementById('minerModal').classList.add('active');
+        }
+
+        function closeMinerModal() {
+            document.getElementById('minerModal').classList.remove('active');
+        }
+
+        async function saveMiner(event) {
+            event.preventDefault();
+
+            const minerId = document.getElementById('minerId').value;
+            const data = {
+                serial_number: document.getElementById('serialNumber').value,
+                model: document.getElementById('model').value,
+                hashrate: parseFloat(document.getElementById('hashrate').value),
+                purchase_cost: parseFloat(document.getElementById('purchaseCost').value),
+                status: document.getElementById('status').value,
+                pool_worker_name: document.getElementById('poolWorker').value || null,
+                pool_url: document.getElementById('poolUrl').value || null,
+                pool_username: document.getElementById('poolUsername').value || null
+            };
+
+            try {
+                const url = minerId ?
+                    `${API_URL}/admin/update-miner/${minerId}` :
+                    `${API_URL}/admin/add-miner`;
+
+                const method = minerId ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showAlert(result.message || 'Miner saved successfully!', 'success');
+                    closeMinerModal();
+                    loadMiners();
+                } else {
+                    showAlert(result.error || 'Failed to save miner', 'error');
+                }
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            }
+        }
+
+        async function deleteMiner(id) {
+            if (!confirm('Are you sure you want to delete this miner?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/admin/delete-miner/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showAlert('Miner deleted successfully', 'success');
+                    loadMiners();
+                } else {
+                    showAlert(result.error || 'Failed to delete miner', 'error');
+                }
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            }
+        }
+
+        async function syncMiner(id) {
+            // This would integrate with pool API
+            showAlert('Pool sync feature coming soon! Configure pool settings first.', 'error');
+        }
+
+        function showAlert(message, type) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+            setTimeout(() => {
+                alertBox.innerHTML = '';
+            }, 5000);
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+
+        // Close modal on outside click
+        document.getElementById('minerModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMinerModal();
+            }
+        });
+    </script>
+</body>
+</html>
